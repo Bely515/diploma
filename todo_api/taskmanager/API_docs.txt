@@ -1,0 +1,26 @@
+http://127.0.0.1:8000/task/api/v1/
+http://127.0.0.1:8000/users/api/v1/
+http://127.0.0.1:8000/categories/api/v1/
+http://127.0.0.1:8000/priorities/api/v1/
+
+    API для работы с задачами, пользователями, категориями и приоритетами соответственно. Позволяют: позволяют получить список всех задач, пользователей и т.д (GET-запрос), либо создать новые (POST-запрос).
+
+   1. Пример GET-запроса: GET /users/api/v1/ HTTP/1.1
+   Пример успешного ответа: (HTTP 200):
+   [
+       {
+        "username": "evans",
+        "first_name": "Evans",
+        "last_name": "Hope",
+        "email": "evans123@gmail.com"
+    }
+   ]
+
+   2. Пример POST-запроса: POST /users/api/v1/ HTTP/1.1
+   Пример успешного ответа: (HTTP 201):
+   {
+    "username": "arasaka_sucks",
+    "first_name": "Johny",
+    "last_name": "Silverhand",
+    "email": "silver@cyber.punk"
+}

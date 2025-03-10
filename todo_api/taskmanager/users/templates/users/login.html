@@ -1,0 +1,25 @@
+{% extends 'users/basic.html' %}
+
+{% block title %}Войти в аккаунт{% endblock %}
+
+{% block content %}
+<div class="container mt-5" style="max-width: 900px; margin: auto;">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <div class="card shadow-sm p-4">
+                <h2 class="h4 text-center mb-3">Вход в систему</h2>
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        {{ form.as_p }}
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Войти</button>
+                </form>
+                <div class="text-center mt-3">
+                    <a href="{% url 'register' %}" class="btn btn-link">Нет аккаунта? Регистрация</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'task/base.html' %}
+
+{% block title %}Учетная запись удалена :({% endblock %}
+
+{% block content %}
+<div class="container mt-4" style="max-width: 500px; margin: auto;">
+    <h1 class="h3">Учетная запись удалена</h1>
+    <p>Ваша учетная запись была успешно удалена. Вы можете создать новую учетную запись на странице регистрации.</p>
+    <a href="{% url 'register' %}" class="btn btn-primary">Перейти к регистрации</a>
+</div>
+{% endblock %}

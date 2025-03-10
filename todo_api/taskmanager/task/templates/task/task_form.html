@@ -1,0 +1,51 @@
+{% extends 'task/base.html' %}
+
+{% block title %}Добавить задачу{% endblock %}
+
+{% block content %}
+<div class="container mt-4" style="max-width: 800px; margin: auto;">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h3">Добавить задачу</h1>
+    </div>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group mb-3">
+            <label for="{{ form.title.id_for_label }}">Название</label>
+            {{ form.title }}
+            {% if form.title.errors %}
+                <div class="text-danger">{{ form.title.errors }}</div>
+            {% endif %}
+        </div>
+        <div class="form-group mb-3">
+            <label for="{{ form.description.id_for_label }}">Описание</label>
+            {{ form.description }}
+            {% if form.description.errors %}
+                <div class="text-danger">{{ form.description.errors }}</div>
+            {% endif %}
+        </div>
+        <div class="form-group mb-3">
+            <label for="{{ form.status.id_for_label }}">Статус</label>
+            {{ form.status }}
+            {% if form.status.errors %}
+                <div class="text-danger">{{ form.status.errors }}</div>
+            {% endif %}
+        </div>
+        <div class="form-group mb-3">
+            <label for="{{ form.category.id_for_label }}">Категория</label>
+            {{ form.category }}
+            {% if form.category.errors %}
+                <div class="text-danger">{{ form.category.errors }}</div>
+            {% endif %}
+        </div>
+        <div class="form-group mb-3">
+            <label for="{{ form.priority.id_for_label }}">Приоритет</label>
+            {{ form.priority }}
+            {% if form.priority.errors %}
+                <div class="text-danger">{{ form.priority.errors }}</div>
+            {% endif %}
+        </div>
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+        <a href="{% url 'task_list' %}" class="btn btn-secondary ms-2">Отмена</a>
+    </form>
+</div>
+{% endblock %}

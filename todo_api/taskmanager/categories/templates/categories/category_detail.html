@@ -1,0 +1,28 @@
+{% extends 'task/base.html' %}
+
+{% block title %}{{ object.name }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4" style="max-width: 800px; margin: auto;">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h3">Подробности о категории</h1>
+        <div class="ms-auto">
+            <a href="{% url 'category_list' %}" class="btn btn-primary">К списку категорий</a>
+        </div>
+    </div>
+    <p><strong>Название:</strong> {{ object.name }}</p>
+    <p><strong>Создана пользователем:</strong> {{ object.created_by }}</p>
+    <p><strong>Дата и время создания:</strong> {{ object.created_at }}</p>
+    <p><strong>Редактирована:</strong> {{ object.updated_at }}</p>
+
+    <div class="d-flex justify-content-between align-items-center">
+        <div class="me-auto">
+            <a href="{% url 'category_edit' category.pk %}" class="btn btn-warning me-2">Редактировать</a>
+        </div>
+        <div class="d-flex ms-auto">
+            <a href="{% url 'category_delete' category.pk %}" class="btn btn-danger me-2">Удалить</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'task/base.html' %}
+
+{% block title %}Профиль{% endblock %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center">
+    <h1 class="h3">Мой профиль</h1>
+</div>
+
+<form method="post" style="max-width: 275px; ms-auto;">
+    {% csrf_token %}
+    <div style="display: flex; flex-direction: column;">
+        <h1 class="h3">Редактировать:</h1>
+        <label for="first_name">Имя:</label>
+        <input type="text" id="first_name" name="first_name" value="{{ user.first_name }}">
+        <label for="last_name">Фамилия:</label>
+        <input type="text" id="last_name" name="last_name" value="{{ user.last_name }}">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="{{ user.email }}">
+        <br>
+        <button type="submit">Сохранить изменения</button>
+    </div>
+</form>
+
+<br>
+
+<div class="d-flex justify-content-between align-items-center">
+    <div class="me-auto">
+        <a href="{% url 'change-password' %}" class="btn btn-primary me-2">Изменить пароль</a>
+        <a href="{% url 'reset-password' %}" class="btn btn-primary">Сбросить пароль</a>
+    </div>
+    <div class="d-flex ms-auto">
+        <a href="{% url 'soft-delete-user' %}" class="btn btn-danger">Удалить профиль</a>
+    </div>
+</div>
+
+{% endblock %}

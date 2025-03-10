@@ -1,0 +1,35 @@
+{% extends 'task/base.html' %}
+
+{% block title %}Список приоритетов{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center my-4">
+    <h1 class="h3">Список приоритетов</h1>
+    <div class="ms-auto">
+        <a href="{% url 'priority_add' %}" class="btn btn-warning">Добавить приоритет</a>
+    </div>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Название</th>
+            <th>Создан пользователем</th>
+            <th>-</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for priority in priorities %}
+            <tr>
+                <td>{{ priority.id }}</td>
+                <td>{{ priority.name }}</td>
+                <td>{{ priority.created_by }}</td>
+                <td><div class="row">
+                    <a href="{% url 'priority_detail' priority.pk %}" class="btn btn-primary">Подробнее</a>
+                </div> </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

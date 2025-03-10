@@ -1,0 +1,27 @@
+{% extends 'task/base.html' %}
+
+{% block title %}Список пользователей{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center">
+    <h1 class="h3 ">Список пользователей</h1>
+</div>
+
+    <table class="table text-center">
+        <thead>
+            <tr>
+                <th><a href="?sort_by=id">ID</a></th>
+                <th><a href="?sort_by=username">Имя пользователя</a></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.username }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

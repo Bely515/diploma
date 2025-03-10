@@ -1,0 +1,83 @@
+{% extends 'task/base.html' %}
+
+{% block title %}Список задач{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center">
+    <h1 class="h3">Список задач</h1>
+    <div class="ms-auto">
+        <a href="{% url 'priority_list' %}" class="btn btn-primary">Приоритеты</a>
+        <a href="{% url 'category_list' %}" class="btn btn-primary">Категории</a>
+        <a href="{% url 'task_add' %}" class="btn btn-warning">Добавить задачу</a>
+    </div>
+
+</div>
+
+<form method="get" action="." class="mb-4">
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <label for="status">По статусу:</label>
+            <select name="status" id="status" class="form-control">
+                <option value="">Все</option>
+                <option value="in_progress">В процессе</option>
+                <option value="pending">В ожидании</option>
+                <option value="completed">Завершена</option>
+            </select>
+        </div>
+
+        <div class="form-group col-md-3">
+            <label for="category">По категории:</label>
+            <select name="category" id="category" class="form-control">
+                <option value="">Все</option>
+                {% for category in categories %}
+                    <option value="{{ category.id }}">{{ category.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group col-md-3">
+            <label for="priority">По приоритету:</label>
+            <select name="priority" id="priority" class="form-control">
+                <option value="">Все</option>
+                {% for priority in priorities %}
+                    <option value="{{ priority.id }}">{{ priority.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+    </div>
+
+    <button type="submit" class="btn btn-primary">Применить фильтры</button>
+</form>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th><a href="?sort_by=id">ID</a></th>
+            <th>Название</th>
+            <th><a href="?sort_by=status">Статус</a></th>
+            <th>Категория</th>
+            <th>Приоритет</th>
+            <th><a href="?sort_by=created_at">Создана</a></th>
+            <th>-</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for task in tasks %}
+            <tr>
+                <td>{{ task.id }}</td>
+                <td>{{ task.title }}</td>
+                <td>{{ task.status }}</td>
+                <td>{{ task.category.name }}</td>
+                <td>{{ task.priority.name }}</td>
+                <td>{{ task.created_at }}</td>
+                <td><div class="row">
+                    <a href="{% url 'task_detail' task.pk %}" class="btn btn-primary">Подробнее</a>
+                </div> </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}
